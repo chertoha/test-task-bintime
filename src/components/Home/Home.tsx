@@ -1,15 +1,10 @@
-import { useGetNewsQuery } from "redux/newsApi/newsApi";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import categories from "data/categories.json";
 import countries from "data/countries.json";
-import {
-  DEFAULT_PAGE,
-  DEFAULT_PAGE_SIZE,
-  DEFAULT_QUERY,
-} from "services/apiConfig";
-import { ChangeEvent, useState } from "react";
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "services/apiConfig";
+import { useState } from "react";
 import DebouncedInput from "components/UIKit/DebouncedInput/DebouncedInput";
 import ArticleList from "components/ArticleList";
 import { Box, Button, FormLabel, Grid, Typography } from "@mui/joy";
@@ -19,7 +14,6 @@ import IconButton from "@mui/joy/IconButton";
 import { Article } from "types/dataTypes";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import { fontWeight } from "@mui/system";
 
 const Home = () => {
   const [query, setQuery] = useState("");

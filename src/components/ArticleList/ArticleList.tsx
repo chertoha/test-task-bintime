@@ -3,15 +3,10 @@ import { FC } from "react";
 import { Article } from "types/dataTypes";
 import LinkIcon from "@mui/icons-material/Link";
 import LinkMUI from "@mui/joy/Link";
-import Select, { selectClasses } from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import { DEFAULT_PAGE_SIZE } from "services/apiConfig";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { trimText } from "utils/trimText";
-import { compareAsc, format } from "date-fns";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+import { Link, useLocation } from "react-router-dom";
 import { ROUTES } from "router";
 
 interface IArticlesProps {
@@ -33,7 +28,6 @@ const TableStyled = styled(Table)`
 `;
 
 const ArticleList: FC<IArticlesProps> = ({ list }) => {
-  const navigate = useNavigate();
   const location = useLocation();
 
   return (
