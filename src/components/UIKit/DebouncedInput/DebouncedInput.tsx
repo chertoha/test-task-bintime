@@ -30,6 +30,8 @@ function DebounceInput(props: InputProps & IDebounceProps) {
     }, debounceTimeout);
   };
 
+  // console.log(rest.value);
+
   return <Input {...rest} onChange={handleChange} />;
 }
 
@@ -42,17 +44,18 @@ interface IDebouncedInputProps {
   timeout?: number;
   placeholder?: string;
   onChangeHandler: (value: string) => void;
+  inititalValue: string;
 }
 
 const DebouncedInput: FC<IDebouncedInputProps> = ({
   placeholder = "Type in here…",
   timeout = 250,
   onChangeHandler,
-  // value,
+  inititalValue,
 }) => {
   // console.log(value);
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(inititalValue);
   // const [debouncedValue, setDebouncedValue] = useState("");
   // const handleDebounce = (value: string) => {
   //   // setDebouncedValue(value);
