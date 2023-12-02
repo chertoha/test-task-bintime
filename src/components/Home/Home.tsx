@@ -12,7 +12,7 @@ import {
 import { ChangeEvent, useState } from "react";
 import DebouncedInput from "components/UIKit/DebouncedInput/DebouncedInput";
 import ArticleList from "components/ArticleList";
-import { Box, Button, Grid, Typography } from "@mui/joy";
+import { Box, Button, FormLabel, Grid, Typography } from "@mui/joy";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import IconButton from "@mui/joy/IconButton";
@@ -27,6 +27,7 @@ const Home = () => {
   const [pageSize, setPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
   const [country, setCountry] = useState<string | null>(null);
   const [category, setCategory] = useState<string | null>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // const { data, isFetching, isError } = useGetNewsQuery({
   //   query,
@@ -113,7 +114,7 @@ const Home = () => {
   return (
     <div>
       {/* Search */}
-      <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2} sx={{ flexGrow: 1 }} py={3}>
         <Grid xs={12} md={12} lg={8}>
           <Typography level="h1" sx={{ fontSize: 22, fontWeight: 500 }}>
             Formula Top Headlines
@@ -130,13 +131,28 @@ const Home = () => {
               inititalValue={query}
             />
             <Button
+              aria-pressed={isFilterOpen ? "true" : "false"}
+              onClick={() => {
+                setIsFilterOpen(!isFilterOpen);
+              }}
               size="sm"
-              sx={{
+              // sx={{
+              // fontWeight: 400,
+              // color: "#1A232E",
+              // backgroundColor: "#ECF0F6",
+              // "&:hover": { backgroundColor: "#8e8f8f" },
+              // }}
+              sx={(theme) => ({
                 fontWeight: 400,
                 color: "#1A232E",
-                backgroundColor: "#ECF0F6",
-                "&:hover": { backgroundColor: "#8e8f8f" },
-              }}
+                backgroundColor: "#e0e0e0",
+                border: "2px solid transparent",
+                "&:hover": { backgroundColor: "#cecbcb" },
+                [`&[aria-pressed="true"]`]: {
+                  backgroundColor: "#948f8f",
+                  border: "2px solid #373636",
+                },
+              })}
               startDecorator={<FilterAltOutlinedIcon />}
             >
               Filters
@@ -146,51 +162,76 @@ const Home = () => {
       </Grid>
 
       {/* Filter */}
-      <Select
-        onChange={onCategoryChange}
-        value={category}
-        size="sm"
-        placeholder="Select"
-        indicator={<KeyboardArrowDown />}
-        sx={{
-          width: 240,
-          [`& .${selectClasses.indicator}`]: {
-            transition: "0.2s",
-            [`&.${selectClasses.expanded}`]: {
-              transform: "rotate(-180deg)",
-            },
-          },
-        }}
+      <Box
+        display="flex"
+        py={3}
+        columnGap={3}
+        sx={{ display: isFilterOpen ? "flex" : "none" }}
       >
-        {categories.map(({ id, title, value }) => (
-          <Option key={id} value={value}>
-            {title}
-          </Option>
-        ))}
-      </Select>
+        <FormLabel
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
+          Category
+          <Select
+            onChange={onCategoryChange}
+            value={category}
+            size="sm"
+            placeholder="Select"
+            indicator={<KeyboardArrowDown />}
+            sx={{
+              width: 240,
+              [`& .${selectClasses.indicator}`]: {
+                transition: "0.2s",
+                [`&.${selectClasses.expanded}`]: {
+                  transform: "rotate(-180deg)",
+                },
+              },
+            }}
+          >
+            {categories.map(({ id, title, value }) => (
+              <Option key={id} value={value}>
+                {title}
+              </Option>
+            ))}
+          </Select>
+        </FormLabel>
 
-      <Select
-        onChange={onCountryChange}
-        value={country}
-        size="sm"
-        placeholder="Select"
-        indicator={<KeyboardArrowDown />}
-        sx={{
-          width: 240,
-          [`& .${selectClasses.indicator}`]: {
-            transition: "0.2s",
-            [`&.${selectClasses.expanded}`]: {
-              transform: "rotate(-180deg)",
-            },
-          },
-        }}
-      >
-        {countries.map(({ id, country, code }) => (
-          <Option key={id} value={code}>
-            {country}
-          </Option>
-        ))}
-      </Select>
+        <FormLabel
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
+          Country
+          <Select
+            onChange={onCountryChange}
+            value={country}
+            size="sm"
+            placeholder="Select"
+            indicator={<KeyboardArrowDown />}
+            sx={{
+              width: 240,
+              [`& .${selectClasses.indicator}`]: {
+                transition: "0.2s",
+                [`&.${selectClasses.expanded}`]: {
+                  transform: "rotate(-180deg)",
+                },
+              },
+            }}
+          >
+            {countries.map(({ id, country, code }) => (
+              <Option key={id} value={code}>
+                {country}
+              </Option>
+            ))}
+          </Select>
+        </FormLabel>
+      </Box>
 
       {/* Table */}
       {/* <ArticleList list={data.articles} /> */}
