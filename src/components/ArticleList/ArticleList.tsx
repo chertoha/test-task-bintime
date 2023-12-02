@@ -7,10 +7,16 @@ import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { DEFAULT_PAGE_SIZE } from "services/apiConfig";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
 interface IArticlesProps {
   list: Article[];
 }
+
+const TableHeader = styled("tr")`
+  /* background-color: tomato; */
+`;
 
 const ArticleList: FC<IArticlesProps> = ({ list }) => {
   return (

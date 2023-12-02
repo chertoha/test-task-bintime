@@ -16,6 +16,7 @@ import { Box, Button } from "@mui/joy";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import IconButton from "@mui/joy/IconButton";
+import { Article } from "types/dataTypes";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -24,26 +25,13 @@ const Home = () => {
   const [country, setCountry] = useState<string | null>(null);
   const [category, setCategory] = useState<string | null>(null);
 
-  const { data, isFetching, isError } = useGetNewsQuery({
-    // query: !query && (country || category) ? "" : DEFAULT_QUERY,
-    query,
-    page,
-    pageSize,
-    category: category || "",
-    country: country || "",
-  });
-
-  /*
-  country = "" && category ==""  && query === ""  ->  query = DEFAULT_QUERY
-  
-  country = "val" ||  category =="val"  && query === ""  ->  query = ""
-  
-
-  query === "val"   
-
-
-  
-  */
+  // const { data, isFetching, isError } = useGetNewsQuery({
+  //   query,
+  //   page,
+  //   pageSize,
+  //   category: category || "",
+  //   country: country || "",
+  // });
 
   const onSearch = (value: string): void => {
     setQuery(value);
@@ -63,18 +51,61 @@ const Home = () => {
     setCategory(newValue);
   };
 
-  if (isFetching) return <h3>Fetching ...</h3>;
-  if (isError) return <h3>Error !!!</h3>;
+  const onPageSizeChange = (
+    e: React.SyntheticEvent | null,
+    newValue: number | null
+  ) => {
+    if (!newValue) return;
+    setPageSize(newValue);
+  };
 
-  if (!data) return null;
+  // if (isFetching) return <h3>Fetching ...</h3>;
+  // if (isError) return <h3>Error !!!</h3>;
 
-  console.log(data);
-  // console.log(`query`, query);
+  // if (!data) return null;
 
-  console.log(pageSize);
+  // console.log(data);
 
-  const lastArticleNum = page * pageSize;
-  const firstArticleNum = lastArticleNum - pageSize + 1;
+  console.log("pageSize", pageSize);
+  console.log("page", page);
+
+  const tempList: Article[] = [
+    {
+      author: "aasdasd",
+      title: "sadfsdf",
+      description:
+        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
+      url: "asdadas12123d",
+      publishedAt: new Date("2015-03-25"),
+      source: {
+        id: "1",
+        name: "asdasd",
+      },
+      urlToImage: "aasdasd",
+    },
+    {
+      author: "a112asdasd",
+      title: "sadfsdf",
+      description:
+        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
+      url: "asdadasd",
+      publishedAt: new Date("2015-03-25"),
+      source: {
+        id: "2",
+        name: "asdasd",
+      },
+      urlToImage: "aasdasd",
+    },
+  ];
+
+  const tempTotalCount = 18;
+
+  // const lastArticleNum = page * pageSize > data.totalResults ? data.totalResults : page * pageSize;
+  const firstArticleNum = page * pageSize - pageSize + 1;
+  const lastArticleNum =
+    page * pageSize > tempTotalCount ? tempTotalCount : page * pageSize;
+
+  // 1-5,   6-10,   11-15        2 * 5 -5 + 1,    1 * 5  - 5 +1
 
   return (
     <div>
@@ -135,24 +166,28 @@ const Home = () => {
       </Select>
 
       {/* Table */}
-      <ArticleList list={data.articles} />
+      {/* <ArticleList list={data.articles} /> */}
+      <ArticleList list={tempList} />
 
       {/* Page manager */}
       <Box display="flex" alignItems="center" justifyContent="flex-end">
         <span>Rows per page:</span>
 
         <Select
-          // onChange={onCountryChange}
+          onChange={onPageSizeChange}
           defaultValue={DEFAULT_PAGE_SIZE}
           // value={rowsPerPage}
-          size="sm"
-          placeholder=""
           indicator={<KeyboardArrowDown />}
+          size="sm"
           sx={{
             // display: "inline",
             border: "none",
+            boxShadow: "none",
+            backgroundColor: "transparent",
 
-            width: 70,
+            "&:hover": { backgroundColor: "transparent" },
+
+            width: "fit-content",
             [`& .${selectClasses.indicator}`]: {
               transition: "0.2s",
               [`&.${selectClasses.expanded}`]: {
@@ -172,13 +207,35 @@ const Home = () => {
         </Select>
 
         <p>
-          {firstArticleNum} - {lastArticleNum} of {data.totalResults}
+          {/* {firstArticleNum} - {lastArticleNum} of {data.totalResults} */}
+          {firstArticleNum} - {lastArticleNum} of {tempTotalCount}
         </p>
 
-        <IconButton variant="plain" size="sm">
+        <IconButton
+          disabled={firstArticleNum === 1}
+          variant="plain"
+          size="sm"
+          onClick={() => {
+            setPage((prev) => prev - 1);
+          }}
+          sx={{
+            "&:hover": { backgroundColor: "transparent" },
+          }}
+        >
           <ChevronLeftIcon />
         </IconButton>
-        <IconButton variant="plain" size="sm">
+        <IconButton
+          // disabled={lastArticleNum === data.totalResult}
+          disabled={lastArticleNum === tempTotalCount}
+          variant="plain"
+          size="sm"
+          onClick={() => {
+            setPage((prev) => prev + 1);
+          }}
+          sx={{
+            "&:hover": { backgroundColor: "transparent" },
+          }}
+        >
           <ChevronRightIcon />
         </IconButton>
       </Box>
