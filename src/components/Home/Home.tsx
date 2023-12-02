@@ -12,11 +12,14 @@ import {
 import { ChangeEvent, useState } from "react";
 import DebouncedInput from "components/UIKit/DebouncedInput/DebouncedInput";
 import ArticleList from "components/ArticleList";
-import { Box, Button } from "@mui/joy";
+import { Box, Button, Grid, Typography } from "@mui/joy";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import IconButton from "@mui/joy/IconButton";
 import { Article } from "types/dataTypes";
+import SearchIcon from "@mui/icons-material/Search";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import { fontWeight } from "@mui/system";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -110,13 +113,37 @@ const Home = () => {
   return (
     <div>
       {/* Search */}
-      <DebouncedInput
-        placeholder="Search article"
-        timeout={1000}
-        // value={query}
-        onChangeHandler={onSearch}
-        inititalValue={query}
-      />
+      <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+        <Grid xs={12} md={12} lg={8}>
+          <Typography level="h1" sx={{ fontSize: 22, fontWeight: 500 }}>
+            Formula Top Headlines
+          </Typography>
+        </Grid>
+        <Grid xs={12} md={12} lg={4}>
+          <Box display="flex" alignItems="center" columnGap={2}>
+            <DebouncedInput
+              startDecorator={<SearchIcon />}
+              placeholder="Search article"
+              timeout={1000}
+              // value={query}
+              onChangeHandler={onSearch}
+              inititalValue={query}
+            />
+            <Button
+              size="sm"
+              sx={{
+                fontWeight: 400,
+                color: "#1A232E",
+                backgroundColor: "#ECF0F6",
+                "&:hover": { backgroundColor: "#8e8f8f" },
+              }}
+              startDecorator={<FilterAltOutlinedIcon />}
+            >
+              Filters
+            </Button>
+          </Box>
+        </Grid>
+      </Grid>
 
       {/* Filter */}
       <Select

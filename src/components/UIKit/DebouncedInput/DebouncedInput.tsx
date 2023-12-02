@@ -1,6 +1,7 @@
 import Input, { InputProps } from "@mui/joy/Input";
-import { FC, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import Typography from "@mui/joy/Typography";
+import { KeyboardArrowDown } from "@mui/icons-material";
 // import { FC } from "react";
 
 interface IDebounceProps {
@@ -45,6 +46,7 @@ interface IDebouncedInputProps {
   placeholder?: string;
   onChangeHandler: (value: string) => void;
   inititalValue: string;
+  startDecorator: React.ReactNode;
 }
 
 const DebouncedInput: FC<IDebouncedInputProps> = ({
@@ -52,6 +54,7 @@ const DebouncedInput: FC<IDebouncedInputProps> = ({
   timeout = 250,
   onChangeHandler,
   inititalValue,
+  startDecorator,
 }) => {
   // console.log(value);
 
@@ -66,11 +69,13 @@ const DebouncedInput: FC<IDebouncedInputProps> = ({
     // <Box sx={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
     <>
       <DebounceInput
+        startDecorator={startDecorator}
         placeholder={placeholder}
         debounceTimeout={timeout}
         handleDebounce={onChangeHandler}
         value={value}
         controlValueHandler={setValue}
+        size="sm"
       />
       {/* <Typography>Debounced input: {debouncedValue}</Typography> */}
     </>
