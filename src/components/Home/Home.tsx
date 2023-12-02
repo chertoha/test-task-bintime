@@ -1,6 +1,6 @@
 import { useGetNewsQuery } from "redux/newsApi/newsApi";
-import Select, { selectClasses } from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
+// import Select, { selectClasses } from "@mui/joy/Select";
+// import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import categories from "data/categories.json";
 import countries from "data/countries.json";
@@ -12,18 +12,19 @@ import {
 import { ChangeEvent, useState } from "react";
 import DebouncedInput from "components/UIKit/DebouncedInput/DebouncedInput";
 import ArticleList from "components/ArticleList";
-import { Box, Button } from "@mui/joy";
+// import { Box, Button } from "@mui/joy";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import IconButton from "@mui/joy/IconButton";
+// import IconButton from "@mui/joy/IconButton";
 import { Article } from "types/dataTypes";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const Home = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState<number>(DEFAULT_PAGE);
   const [pageSize, setPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
   const [country, setCountry] = useState<string | null>(null);
-  const [category, setCategory] = useState<string | null>(null);
+  const [category, setCategory] = useState<string>("");
 
   // const { data, isFetching, isError } = useGetNewsQuery({
   //   query,
@@ -44,11 +45,15 @@ const Home = () => {
     setCountry(newValue);
   };
 
-  const onCategoryChange = (
-    e: React.SyntheticEvent | null,
-    newValue: string | null
-  ) => {
-    setCategory(newValue);
+  // const onCategoryChange = (
+  //   e: React.SyntheticEvent | null,
+  //   newValue: string | null
+  // ) => {
+  //   setCategory(newValue);
+  // };
+
+  const onCategoryChange = (event: SelectChangeEvent) => {
+    setCategory(event.target.value as string);
   };
 
   const onPageSizeChange = (
@@ -122,18 +127,18 @@ const Home = () => {
       <Select
         onChange={onCategoryChange}
         value={category}
-        size="sm"
+        size="small"
         placeholder="Select"
-        indicator={<KeyboardArrowDown />}
-        sx={{
-          width: 240,
-          [`& .${selectClasses.indicator}`]: {
-            transition: "0.2s",
-            [`&.${selectClasses.expanded}`]: {
-              transform: "rotate(-180deg)",
-            },
-          },
-        }}
+        // indicator={<KeyboardArrowDown />}
+        // sx={{
+        //   width: 240,
+        //   [`& .${selectClasses.indicator}`]: {
+        //     transition: "0.2s",
+        //     [`&.${selectClasses.expanded}`]: {
+        //       transform: "rotate(-180deg)",
+        //     },
+        //   },
+        // }}
       >
         {categories.map(({ id, title, value }) => (
           <Option key={id} value={value}>
