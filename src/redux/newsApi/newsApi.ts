@@ -1,29 +1,53 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery, BASE_URL } from "services/api";
-// import { WaybillStatus, WaybillStatusDefaultResponse } from "types/types";
+import { axiosBaseQuery } from "services/api";
+import { DEFAULT_QUERY } from "services/apiConfig";
+import { News } from "types/dataTypes";
+import { GetNewsQuery } from "types/queryTypes";
 
 export const newsApi = createApi({
   reducerPath: "news",
 
-  baseQuery: axiosBaseQuery({
-    baseUrl: BASE_URL as string,
-  }),
+  baseQuery: axiosBaseQuery(),
 
   endpoints: (builder) => ({
-    getNews: builder.query<any, void>({
-      query: () => ({
-        url: "/top-headlines/sources",
+    getNews: builder.query<News, GetNewsQuery>({
+      query: ({ query, page, pageSize, category, country }) => ({
+        url: "/top-headlines",
         method: "GET",
+        params: {
+          q: !query && !category && !country ? DEFAULT_QUERY : query,
+          page,
+          pageSize,
+          category,
+          country,
+        },
       }),
     }),
 
-    getLatest: builder.query<any, void>({
-      query: () => ({
-        url: "/everything?q=ukraine",
-        method: "GET",
-      }),
-    }),
+    //   query: ({ query, page, pageSize, category, country }) => {
+    //     const q = !query && !category && !country ? DEFAULT_QUERY : query;
+
+    //     return {
+    //       url: "/top-headlines",
+    //       method: "GET",
+    //       params: {
+    //         q,
+    //         page,
+    //         pageSize,
+    //         category,
+    //         country,
+    //       },
+    //     };
+    //   },
+    // }),
+
+    // getLatest: builder.query<any, void>({
+    //   query: () => ({
+    //     url: "/everything?q=ukraine",
+    //     method: "GET",
+    //   }),
+    // }),
   }),
 });
 
-export const { useGetLatestQuery, useGetNewsQuery } = newsApi;
+export const { useGetNewsQuery } = newsApi;

@@ -1,9 +1,8 @@
 [
-  "business",
-  "entertainment",
-  "general",
-  "health",
-  "science",
-  "sports",
-  "technology"
+  { "id": "1", "title": "Business", "value": "business" },
+  { "id": "2", "title": "General", "value": "general" },
+  { "id": "3", "title": "Health", "value": "health" },
+  { "id": "4", "title": "Science", "value": "science" },
+  { "id": "5", "title": "Sports", "value": "sports" },
+  { "id": "6", "title": "Technology", "value": "technology" }
 ]

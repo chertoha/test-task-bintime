@@ -22,7 +22,7 @@ const routes = [
         element: <HomePage />,
       },
       {
-        path: `${ROUTES.ARTICLE}/:id`,
+        path: `${ROUTES.ARTICLE}`,
         element: <ArticlePage />,
       },
     ],
