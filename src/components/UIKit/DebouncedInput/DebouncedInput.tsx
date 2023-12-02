@@ -1,7 +1,5 @@
 import Input, { InputProps } from "@mui/joy/Input";
 import React, { FC, useRef, useState } from "react";
-import Typography from "@mui/joy/Typography";
-import { KeyboardArrowDown } from "@mui/icons-material";
 // import { FC } from "react";
 
 interface IDebounceProps {
