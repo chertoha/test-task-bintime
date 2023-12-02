@@ -71,7 +71,7 @@ const Home = () => {
 
   const tempList: Article[] = [
     {
-      author: "aasdasd",
+      author: "aasdasd as;lksd;flksdf sdfs df",
       title: "sadfsdf",
       description:
         "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
@@ -81,7 +81,7 @@ const Home = () => {
         id: "1",
         name: "asdasd",
       },
-      urlToImage: "aasdasd",
+      urlToImage: "img url",
     },
     {
       author: "a112asdasd",
@@ -94,7 +94,7 @@ const Home = () => {
         id: "2",
         name: "asdasd",
       },
-      urlToImage: "aasdasd",
+      urlToImage: "img url",
     },
   ];
 

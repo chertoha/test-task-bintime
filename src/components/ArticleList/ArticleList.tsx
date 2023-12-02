@@ -9,25 +9,31 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { DEFAULT_PAGE_SIZE } from "services/apiConfig";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { trimText } from "utils/trimText";
+import { compareAsc, format } from "date-fns";
 
 interface IArticlesProps {
   list: Article[];
 }
 
-const TableHeader = styled("tr")`
-  /* background-color: tomato; */
+const TableStyled = styled(Table)`
+  & th {
+    background-color: #ecf0f6;
+    font-weight: 500;
+    vertical-align: middle !important;
+  }
 `;
 
 const ArticleList: FC<IArticlesProps> = ({ list }) => {
   return (
     <div>
-      <Table hoverRow>
+      <TableStyled hoverRow>
         <thead>
           <tr>
-            <th style={{ width: "40%" }}>Image</th>
+            <th>Image</th>
             <th>Title</th>
             <th>Authors</th>
-            <th>Description</th>
+            <th style={{ width: "30%" }}>Description</th>
             <th>Publication date</th>
             <th>Original URL</th>
           </tr>
@@ -39,10 +45,10 @@ const ArticleList: FC<IArticlesProps> = ({ list }) => {
                 <td>
                   <img src={urlToImage} alt={title} width="100" height="70" />
                 </td>
-                <td>{title}</td>
-                <td>{author}</td>
-                <td>{description}</td>
-                <td>{`${publishedAt}`}</td>
+                <td>{trimText(title, 20)}</td>
+                <td>{trimText(author, 20)}</td>
+                <td>{trimText(description, 90)}</td>
+                <td>{format(new Date(publishedAt), "yyyy-MM-dd")}</td>
                 <td>
                   <Link href={url}>
                     <LinkIcon />
@@ -52,7 +58,7 @@ const ArticleList: FC<IArticlesProps> = ({ list }) => {
             )
           )}
         </tbody>
-      </Table>
+      </TableStyled>
     </div>
   );
 };
