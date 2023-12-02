@@ -1,111 +1,57 @@
 [
-"Argentina"
-ar
-
-
-"Australia"
-au
-"Austria"
-at
-"Belgium"
-be
-"Brazil"
-br
-"Bulgaria"
-bg
-"Canada"
-ca
-"China"
-cn
-"Colombia"
-co
-"Cuba"
-cu
-"Czech Republic"
-cz
-"Egypt"
-eg
-"France"
-fr
-"Germany"
-de
-"Greece"
-gr
-"Hong Kong"
-hk
-"Hungary"
-hu
-"India"
-in
-"Indonesia"
-id
-"Ireland"
-ie
-"Israel"
-il
-"Italy"
-it
-"Japan"
-jp
-"Latvia"
-lv
-"Lithuania"
-lt
-"Malaysia"
-my
-"Mexico"
-mx
-"Morocco"
-ma
-"Netherlands"
-nl
-"New Zealand"
-nz
-"Nigeria"
-ng
-"Norway"
-no
-"Philippines"
-ph
-"Poland"
-pl
-"Portugal"
-pt
-"Romania"
-ro
-
-"Saudi Arabia"
-sa
-"Serbia"
-rs
-"Singapore"
-sg
-"Slovakia"
-sk
-"Slovenia"
-si
-"South Africa"
-za
-"South Korea"
-kr
-"Sweden"
-se
-"Switzerland"
-ch
-"Taiwan"
-tw
-"Thailand"
-th
-"Turkey"
-tr
-"UAE"
-ae
-"Ukraine"
-ua
-"United Kingdom"
-gb
-"United States"
-us
-"Venuzuela"
-ve
+  {
+    "id": "1",
+    "country": "Argentina",
+    "code": "ar"
+  },
+  {
+    "id": "2",
+    "country": "Italy",
+    "code": "it"
+  },
+  {
+    "id": "3",
+    "country": "Japan",
+    "code": "jp"
+  },
+  {
+    "id": "4",
+    "country": "Latvia",
+    "code": "lv"
+  },
+  {
+    "id": "5",
+    "country": "Lithuania",
+    "code": "lt"
+  },
+  {
+    "id": "6",
+    "country": "Mexico",
+    "code": "mx"
+  },
+  {
+    "id": "7",
+    "country": "Portugal",
+    "code": "pt"
+  },
+  {
+    "id": "8",
+    "country": "Romania",
+    "code": "ro"
+  },
+  {
+    "id": "9",
+    "country": "Taiwan",
+    "code": "tw"
+  },
+  {
+    "id": "10",
+    "country": "United Kingdom",
+    "code": "gb"
+  },
+  {
+    "id": "11",
+    "country": "United States",
+    "code": "us"
+  }
 ]
