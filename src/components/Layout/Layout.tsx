@@ -9,14 +9,11 @@ const Layout: FC = () => {
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <Header />
-      {/* <Header /> */}
-      {/* <Container> */}
       <Box component="main" flexGrow={1}>
         {/* <Suspense> */}
         <Outlet />
         {/* </Suspense> */}
       </Box>
-      {/* </Container> */}
 
       <Box boxShadow="0px -2px 4px 0px rgba(223, 223, 223, 0.25);" py={1}>
         <Footer />
