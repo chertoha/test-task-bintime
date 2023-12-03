@@ -9,18 +9,21 @@ interface IFilterProps {
   isOpen: boolean;
   countryState: State<string | null>;
   categoryState: State<string | null>;
+  resetPage: () => void;
 }
 
 const Filter: FC<IFilterProps> = ({
   isOpen,
   countryState: [country, setCountry],
   categoryState: [category, setCategory],
+  resetPage,
 }) => {
   const onCountryChange = (
     e: SyntheticEvent | null,
     newValue: string | null
   ) => {
     setCountry(newValue);
+    resetPage();
   };
 
   const onCategoryChange = (
@@ -28,6 +31,7 @@ const Filter: FC<IFilterProps> = ({
     newValue: string | null
   ) => {
     setCategory(newValue);
+    resetPage();
   };
   return (
     <Box
