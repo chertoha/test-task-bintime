@@ -1,9 +1,9 @@
-import { KeyboardArrowDown } from "@mui/icons-material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { KeyboardArrowDown } from "@mui/icons-material";
 import { Box, IconButton, Option, Select, selectClasses } from "@mui/joy";
 import { FC } from "react";
-import { DEFAULT_PAGE_SIZE } from "services/apiConfig";
+import { DEFAULT_PAGE_SIZE, pageSizeList } from "services/config";
 import { State } from "types/stateTypes";
 
 interface IPageManagerProps {
@@ -65,7 +65,6 @@ const PageManager: FC<IPageManagerProps> = ({
           indicator={<KeyboardArrowDown />}
           size="sm"
           sx={{
-            // display: "inline",
             fontFamily: "Roboto",
             fontSize: 12,
             border: "none",
@@ -84,14 +83,20 @@ const PageManager: FC<IPageManagerProps> = ({
             },
           }}
         >
-          <Option value={DEFAULT_PAGE_SIZE}>{DEFAULT_PAGE_SIZE}</Option>
+          {pageSizeList.map((val) => (
+            <Option key={val} value={val}>
+              {val}
+            </Option>
+          ))}
+
+          {/* <Option value={DEFAULT_PAGE_SIZE}>{DEFAULT_PAGE_SIZE}</Option>
           <Option value={DEFAULT_PAGE_SIZE + 5}>{DEFAULT_PAGE_SIZE + 5}</Option>
           <Option value={DEFAULT_PAGE_SIZE + 10}>
             {DEFAULT_PAGE_SIZE + 10}
           </Option>
           <Option value={DEFAULT_PAGE_SIZE + 20}>
             {DEFAULT_PAGE_SIZE + 20}
-          </Option>
+          </Option> */}
         </Select>
       </Box>
 

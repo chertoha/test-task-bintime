@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "services/api";
-import { DEFAULT_QUERY } from "services/apiConfig";
+import { DEFAULT_QUERY } from "services/config";
 import { News } from "types/dataTypes";
 import { GetNewsQuery } from "types/queryTypes";
 

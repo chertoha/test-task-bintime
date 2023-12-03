@@ -1,7 +1,7 @@
 import Filter from "components/Filter";
 import SearchBar from "components/SearchBar";
 import NewsTable from "components/NewsTable";
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "services/apiConfig";
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "services/config";
 import { useEffect, useMemo, useState } from "react";
 import { Container } from "@mui/joy";
 import { useGetNewsQuery } from "redux/newsApi/newsApi";

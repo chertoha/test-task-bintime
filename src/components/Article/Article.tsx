@@ -117,7 +117,7 @@ const Article = () => {
           component="p"
           sx={{ fontSize: 12, color: "rgba(33, 41, 50, 0.54)" }}
         >
-          {`Authors: ${author}`}
+          {`Authors: ${author || ""}`}
         </Typography>
       </Container>
     </Box>
