@@ -7,7 +7,7 @@ import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "services/apiConfig";
 import { useState } from "react";
 import DebouncedInput from "components/UIKit/DebouncedInput/DebouncedInput";
 import ArticleList from "components/ArticleList";
-import { Box, Button, FormLabel, Grid, Typography } from "@mui/joy";
+import { Box, Button, Container, FormLabel, Grid, Typography } from "@mui/joy";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import IconButton from "@mui/joy/IconButton";
@@ -111,7 +111,7 @@ const Home = () => {
   // 1-5,   6-10,   11-15        2 * 5 -5 + 1,    1 * 5  - 5 +1
 
   return (
-    <div>
+    <Container>
       {/* Search */}
       <Grid container spacing={2} sx={{ flexGrow: 1 }} py={3}>
         <Grid xs={12} md={12} lg={8}>
@@ -306,7 +306,7 @@ const Home = () => {
           <ChevronRightIcon />
         </IconButton>
       </Box>
-    </div>
+    </Container>
   );
 };
 

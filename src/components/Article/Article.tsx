@@ -21,7 +21,6 @@ const Article = () => {
     publishedAt,
     source: { name: sourceName },
     title,
-    url,
     urlToImage,
     content,
   } = article;
