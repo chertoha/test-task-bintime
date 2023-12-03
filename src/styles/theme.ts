@@ -1,6 +1,8 @@
 import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
 
 export const theme = extendTheme({
+  fontFamily: { body: `"Noto Sans", sans-serif ` },
+
   components: {
     // JoyChip: {
     //   defaultProps: {
@@ -12,6 +14,12 @@ export const theme = extendTheme({
     //     },
     //   },
     // },
+
+    JoySelect: {
+      styleOverrides: {
+        listbox: { fontFamily: `'Manrope', sans-serif` },
+      },
+    },
 
     JoyLink: {
       styleOverrides: {

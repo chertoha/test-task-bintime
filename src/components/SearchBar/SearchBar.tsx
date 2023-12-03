@@ -20,7 +20,10 @@ const SearchBar: FC<ISearchBarProps> = ({
   return (
     <Grid container spacing={2} sx={{ flexGrow: 1 }} py={3}>
       <Grid xs={12} md={12} lg={8}>
-        <Typography level="h1" sx={{ fontSize: 22, fontWeight: 500 }}>
+        <Typography
+          level="h1"
+          sx={{ fontSize: 22, fontWeight: 500, fontFamily: "Noto sans" }}
+        >
           Formula Top Headlines
         </Typography>
       </Grid>
