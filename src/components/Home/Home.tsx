@@ -17,6 +17,7 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import { useGetNewsQuery } from "redux/newsApi/newsApi";
 import Filter from "components/Filter";
 import PageManager from "components/PageManager";
+import SearchBar from "components/SearchBar";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -45,6 +46,10 @@ const Home = () => {
     setQuery(value);
   };
 
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
   if (isFetching) return <h3>Fetching ...</h3>;
   if (isError) return <h3>Error !!!</h3>;
 
@@ -57,7 +62,7 @@ const Home = () => {
 
   return (
     <Container>
-      <Grid container spacing={2} sx={{ flexGrow: 1 }} py={3}>
+      {/* <Grid container spacing={2} sx={{ flexGrow: 1 }} py={3}>
         <Grid xs={12} md={12} lg={8}>
           <Typography level="h1" sx={{ fontSize: 22, fontWeight: 500 }}>
             Formula Top Headlines
@@ -96,7 +101,13 @@ const Home = () => {
             </Button>
           </Box>
         </Grid>
-      </Grid>
+      </Grid> */}
+      <SearchBar
+        isFilterOpen={isFilterOpen}
+        toggleFilter={toggleFilter}
+        searchValue={query}
+        onSearch={onSearch}
+      />
 
       <Filter
         categoryState={categoryFilterState}
@@ -104,7 +115,6 @@ const Home = () => {
         isOpen={isFilterOpen}
       />
 
-      {/* Table */}
       <ArticleList list={data.articles} />
       {/* <ArticleList list={tempList} /> */}
 

@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { Link, useLocation } from "react-router-dom";
 import { ROUTES } from "router";
 import { Box } from "@mui/joy";
+import thumbnailImage from "images/thumbnail.jpg";
 
 interface IArticlesProps {
   list: Article[];
@@ -64,7 +65,7 @@ const ArticleList: FC<IArticlesProps> = ({ list }) => {
             <tr key={item.url}>
               <td>
                 <img
-                  src={item.urlToImage}
+                  src={item.urlToImage ? item.urlToImage : thumbnailImage}
                   alt={item.title}
                   width="100"
                   height="70"
@@ -92,6 +93,7 @@ const ArticleList: FC<IArticlesProps> = ({ list }) => {
               <td>{format(new Date(item.publishedAt), "yyyy-MM-dd")}</td>
               <td>
                 <LinkMUI
+                  target="_blank"
                   aria-label="Link to source article"
                   href={item.url}
                   sx={{
