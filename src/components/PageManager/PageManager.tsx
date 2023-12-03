@@ -88,22 +88,12 @@ const PageManager: FC<IPageManagerProps> = ({
               {val}
             </Option>
           ))}
-
-          {/* <Option value={DEFAULT_PAGE_SIZE}>{DEFAULT_PAGE_SIZE}</Option>
-          <Option value={DEFAULT_PAGE_SIZE + 5}>{DEFAULT_PAGE_SIZE + 5}</Option>
-          <Option value={DEFAULT_PAGE_SIZE + 10}>
-            {DEFAULT_PAGE_SIZE + 10}
-          </Option>
-          <Option value={DEFAULT_PAGE_SIZE + 20}>
-            {DEFAULT_PAGE_SIZE + 20}
-          </Option> */}
         </Select>
       </Box>
 
       <Box display="flex" alignItems="center">
         <Box component="p" mr={2}>
           {firstArticleNum} - {lastArticleNum} of {totalResults}
-          {/* {firstArticleNum} - {lastArticleNum} of {tempTotalCount} */}
         </Box>
 
         <IconButton
@@ -121,7 +111,6 @@ const PageManager: FC<IPageManagerProps> = ({
         <IconButton
           aria-label="Next page"
           disabled={lastArticleNum === totalResults}
-          // disabled={lastArticleNum === tempTotalCount}
           variant="plain"
           size="sm"
           onClick={increasePage}

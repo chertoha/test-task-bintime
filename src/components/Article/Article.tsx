@@ -1,13 +1,11 @@
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { Box, Container, Link as LinkMUI, Typography } from "@mui/joy";
 import { ROUTES } from "router";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Article as ArticleType } from "types/dataTypes";
 import { format } from "date-fns";
 
 const Article = () => {
-  // const params = useParams();
-
   const location = useLocation();
   const article: ArticleType = location.state?.payload;
 
@@ -104,7 +102,6 @@ const Article = () => {
               pb={2}
               mb={2}
               mt={1}
-              // mt={1}
               sx={{ fontSize: 13 }}
             >
               {content}
