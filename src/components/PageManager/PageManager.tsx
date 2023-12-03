@@ -23,6 +23,7 @@ const PageManager: FC<IPageManagerProps> = ({
   ) => {
     if (!newValue) return;
     setPageSize(newValue);
+    setPage(1);
   };
 
   const increasePage = () => {

@@ -18,6 +18,7 @@ import { useGetNewsQuery } from "redux/newsApi/newsApi";
 import Filter from "components/Filter";
 import PageManager from "components/PageManager";
 import SearchBar from "components/SearchBar";
+import NewsTable from "components/NewsTable";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -50,12 +51,12 @@ const Home = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  if (isFetching) return <h3>Fetching ...</h3>;
-  if (isError) return <h3>Error !!!</h3>;
+  // if (isFetching) return <h3>Fetching ...</h3>;
+  // if (isError) return <h3>Error !!!</h3>;
 
-  if (!data) return null;
+  // if (!data) return null;
 
-  console.log(data);
+  // console.log(data);
 
   // console.log("pageSize", pageSize);
   // console.log("page", page);
@@ -115,13 +116,23 @@ const Home = () => {
         isOpen={isFilterOpen}
       />
 
-      <ArticleList list={data.articles} />
+      {/* <ArticleList list={data.articles} /> */}
       {/* <ArticleList list={tempList} /> */}
 
-      <PageManager
+      {/* <PageManager
         pageSizeState={pageSizeState}
         pageState={pageState}
         totalResults={data.totalResults}
+      /> */}
+
+      <NewsTable
+        isError={isError}
+        isFetching={isFetching}
+        // list={data.articles}
+        pageSizeState={pageSizeState}
+        pageState={pageState}
+        // totalResults={data.totalResults}
+        data={data}
       />
     </Container>
   );

@@ -34,7 +34,15 @@ const Filter: FC<IFilterProps> = ({
       display="flex"
       py={3}
       columnGap={3}
-      sx={{ display: isOpen ? "flex" : "none" }}
+      sx={{
+        display: isOpen ? "flex" : "none",
+        flexDirection: {
+          xs: "column",
+          md: "row",
+        },
+
+        rowGap: 2,
+      }}
     >
       <FormLabel
         sx={{
@@ -51,7 +59,10 @@ const Filter: FC<IFilterProps> = ({
           placeholder="Select"
           indicator={<KeyboardArrowDown />}
           sx={{
-            width: 240,
+            width: {
+              xs: "60%",
+              md: 240,
+            },
             [`& .${selectClasses.indicator}`]: {
               transition: "0.2s",
               [`&.${selectClasses.expanded}`]: {
@@ -83,7 +94,10 @@ const Filter: FC<IFilterProps> = ({
           placeholder="Select"
           indicator={<KeyboardArrowDown />}
           sx={{
-            width: 240,
+            width: {
+              xs: "60%",
+              md: 240,
+            },
             [`& .${selectClasses.indicator}`]: {
               transition: "0.2s",
               [`&.${selectClasses.expanded}`]: {
