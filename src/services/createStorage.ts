@@ -1,4 +1,4 @@
-export const storage = <T>(key: string) => {
+export const createStorage = <T>(key: string) => {
   return {
     set: (data: T): void => {
       localStorage.setItem(key, JSON.stringify(data));

@@ -1,7 +1,14 @@
 import categories from "data/categories.json";
 import countries from "data/countries.json";
 import { KeyboardArrowDown } from "@mui/icons-material";
-import { Box, FormLabel, Option, Select, selectClasses } from "@mui/joy";
+import {
+  Box,
+  FormLabel,
+  Option,
+  Select,
+  selectClasses,
+  Typography,
+} from "@mui/joy";
 import { FC, SyntheticEvent } from "react";
 import { State } from "types/stateTypes";
 
@@ -56,7 +63,7 @@ const Filter: FC<IFilterProps> = ({
           onChange={onCategoryChange}
           value={category}
           size="sm"
-          placeholder="Select"
+          placeholder="-Select-"
           indicator={<KeyboardArrowDown />}
           sx={{
             width: {
@@ -71,6 +78,13 @@ const Filter: FC<IFilterProps> = ({
             },
           }}
         >
+          <Option value="">
+            <Typography
+              sx={{ color: "gray", fontWeight: "400", fontSize: "14px" }}
+            >
+              -Select-
+            </Typography>
+          </Option>
           {categories.map(({ id, title, value }) => (
             <Option key={id} value={value}>
               {title}
@@ -91,7 +105,7 @@ const Filter: FC<IFilterProps> = ({
           onChange={onCountryChange}
           value={country}
           size="sm"
-          placeholder="Select"
+          placeholder="-Select-"
           indicator={<KeyboardArrowDown />}
           sx={{
             width: {
@@ -106,6 +120,13 @@ const Filter: FC<IFilterProps> = ({
             },
           }}
         >
+          <Option value="">
+            <Typography
+              sx={{ color: "gray", fontWeight: "400", fontSize: "14px" }}
+            >
+              -Select-
+            </Typography>
+          </Option>
           {countries.map(({ id, country, code }) => (
             <Option key={id} value={code}>
               {country}

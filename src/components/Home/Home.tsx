@@ -4,7 +4,7 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import categories from "data/categories.json";
 import countries from "data/countries.json";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "services/apiConfig";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DebouncedInput from "components/UIKit/DebouncedInput/DebouncedInput";
 import ArticleList from "components/ArticleList";
 import { Box, Button, Container, FormLabel, Grid, Typography } from "@mui/joy";
@@ -19,14 +19,30 @@ import Filter from "components/Filter";
 import PageManager from "components/PageManager";
 import SearchBar from "components/SearchBar";
 import NewsTable from "components/NewsTable";
+import { createStorage } from "services/createStorage";
+import { GetNewsQuery } from "types/queryTypes";
+
+type StorageData = GetNewsQuery & {
+  isFilterOpen: boolean;
+};
+
+const storage = createStorage<StorageData>("news_request");
 
 const Home = () => {
-  const [query, setQuery] = useState("");
-  const pageState = useState<number>(DEFAULT_PAGE);
-  const pageSizeState = useState<number>(DEFAULT_PAGE_SIZE);
-  const countryFilterState = useState<string | null>(null);
-  const categoryFilterState = useState<string | null>(null);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [query, setQuery] = useState(() => storage.get()?.query || "");
+  const pageState = useState<number>(() => storage.get()?.page || DEFAULT_PAGE);
+  const pageSizeState = useState<number>(
+    () => storage.get()?.pageSize || DEFAULT_PAGE_SIZE
+  );
+  const countryFilterState = useState<string | null>(
+    () => storage.get()?.country || null
+  );
+  const categoryFilterState = useState<string | null>(
+    () => storage.get()?.category || null
+  );
+  const [isFilterOpen, setIsFilterOpen] = useState(
+    () => storage.get()?.isFilterOpen || false
+  );
 
   const [country] = countryFilterState;
   const [category] = categoryFilterState;
@@ -35,13 +51,26 @@ const Home = () => {
 
   // const TestType = typeof countryFilterState;
 
-  const { data, isFetching, isError } = useGetNewsQuery({
-    query,
-    page,
-    pageSize,
-    category: category || "",
-    country: country || "",
-  });
+  // const request: GetNewsQuery = {
+  //   query,
+  //   page,
+  //   pageSize,
+  //   category: category || "",
+  //   country: country || "",
+  // };
+
+  const request = useMemo(
+    () => ({
+      query,
+      page,
+      pageSize,
+      category: category || "",
+      country: country || "",
+    }),
+    [category, country, page, pageSize, query]
+  );
+
+  const { data, isFetching, isError } = useGetNewsQuery(request);
 
   const onSearch = (value: string): void => {
     setQuery(value);
@@ -50,6 +79,13 @@ const Home = () => {
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
   };
+
+  useEffect(() => {
+    storage.set({
+      ...request,
+      isFilterOpen,
+    });
+  }, [isFilterOpen, request]);
 
   // if (isFetching) return <h3>Fetching ...</h3>;
   // if (isError) return <h3>Error !!!</h3>;
