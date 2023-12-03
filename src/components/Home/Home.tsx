@@ -14,6 +14,7 @@ import IconButton from "@mui/joy/IconButton";
 import { Article } from "types/dataTypes";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import { useGetNewsQuery } from "redux/newsApi/newsApi";
 
 const Home = () => {
   const [query, setQuery] = useState("");
@@ -23,13 +24,13 @@ const Home = () => {
   const [category, setCategory] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // const { data, isFetching, isError } = useGetNewsQuery({
-  //   query,
-  //   page,
-  //   pageSize,
-  //   category: category || "",
-  //   country: country || "",
-  // });
+  const { data, isFetching, isError } = useGetNewsQuery({
+    query,
+    page,
+    pageSize,
+    category: category || "",
+    country: country || "",
+  });
 
   const onSearch = (value: string): void => {
     setQuery(value);
@@ -57,56 +58,57 @@ const Home = () => {
     setPageSize(newValue);
   };
 
-  // if (isFetching) return <h3>Fetching ...</h3>;
-  // if (isError) return <h3>Error !!!</h3>;
+  if (isFetching) return <h3>Fetching ...</h3>;
+  if (isError) return <h3>Error !!!</h3>;
 
-  // if (!data) return null;
+  if (!data) return null;
 
-  // console.log(data);
+  console.log(data);
 
   console.log("pageSize", pageSize);
   console.log("page", page);
 
-  const tempList: Article[] = [
-    {
-      author: "aasdasd as;lksd;flksdf sdfs df",
-      title: "sadfsdf",
-      description:
-        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
-      url: "asdadas12123d",
-      publishedAt: new Date("2015-03-25"),
-      source: {
-        id: "1",
-        name: "asdasd",
-      },
-      urlToImage: "img url",
-      content:
-        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
-    },
-    {
-      author: "a112asdasd",
-      title:
-        "sadfs dfsadf sdfsa dfsd fsadfs fsadfs fsa sadfsd fsad fsd sadfs dffsadfs dfsadfsdf sadfsdf adfsdfdf",
-      description:
-        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
-      url: "asdadasd",
-      publishedAt: new Date("2015-03-25"),
-      source: {
-        id: "2",
-        name: "asdasd",
-      },
-      urlToImage: "",
-      content:
-        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
-    },
-  ];
+  // const tempList: Article[] = [
+  //   {
+  //     author: "aasdasd as;lksd;flksdf sdfs df",
+  //     title: "sadfsdf",
+  //     description:
+  //       "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
+  //     url: "asdadas12123d",
+  //     publishedAt: new Date("2015-03-25"),
+  //     source: {
+  //       id: "1",
+  //       name: "asdasd",
+  //     },
+  //     urlToImage: "img url",
+  //     content:
+  //       "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
+  //   },
+  //   {
+  //     author: "a112asdasd",
+  //     title:
+  //       "sadfs dfsadf sdfsa dfsd fsadfs fsadfs fsa sadfsd fsad fsd sadfs dffsadfs dfsadfsdf sadfsdf adfsdfdf",
+  //     description:
+  //       "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
+  //     url: "asdadasd",
+  //     publishedAt: new Date("2015-03-25"),
+  //     source: {
+  //       id: "2",
+  //       name: "asdasd",
+  //     },
+  //     urlToImage: "",
+  //     content:
+  //       "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
+  //   },
+  // ];
 
-  const tempTotalCount = 18;
+  // const tempTotalCount = 18;
 
-  // const lastArticleNum = page * pageSize > data.totalResults ? data.totalResults : page * pageSize;
-  const firstArticleNum = page * pageSize - pageSize + 1;
   const lastArticleNum =
-    page * pageSize > tempTotalCount ? tempTotalCount : page * pageSize;
+    page * pageSize > data.totalResults ? data.totalResults : page * pageSize;
+  const firstArticleNum = page * pageSize - pageSize + 1;
+  // const lastArticleNum =
+  //   page * pageSize > tempTotalCount ? tempTotalCount : page * pageSize;
 
   // 1-5,   6-10,   11-15        2 * 5 -5 + 1,    1 * 5  - 5 +1
 
@@ -233,78 +235,105 @@ const Home = () => {
       </Box>
 
       {/* Table */}
-      {/* <ArticleList list={data.articles} /> */}
-      <ArticleList list={tempList} />
+      <ArticleList list={data.articles} />
+      {/* <ArticleList list={tempList} /> */}
 
       {/* Page manager */}
-      <Box display="flex" alignItems="center" justifyContent="flex-end">
-        <span>Rows per page:</span>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="flex-end"
+        pt={2}
+        sx={{
+          fontSize: 12,
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+          alignItems: {
+            xs: "flex-start",
+            md: "center",
+          },
+          border: "1px solid rgba(53, 61, 106, 0.08)",
+        }}
+      >
+        <Box display="flex" alignItems="center">
+          <span>Rows per page:</span>
+          <Select
+            onChange={onPageSizeChange}
+            defaultValue={DEFAULT_PAGE_SIZE}
+            value={pageSize}
+            indicator={<KeyboardArrowDown />}
+            size="sm"
+            sx={{
+              // display: "inline",
+              fontFamily: "Roboto",
+              fontSize: 12,
+              border: "none",
+              boxShadow: "none",
+              backgroundColor: "transparent",
+              mr: 2,
 
-        <Select
-          onChange={onPageSizeChange}
-          defaultValue={DEFAULT_PAGE_SIZE}
-          // value={rowsPerPage}
-          indicator={<KeyboardArrowDown />}
-          size="sm"
-          sx={{
-            // display: "inline",
-            border: "none",
-            boxShadow: "none",
-            backgroundColor: "transparent",
+              "&:hover": { backgroundColor: "transparent" },
 
-            "&:hover": { backgroundColor: "transparent" },
-
-            width: "fit-content",
-            [`& .${selectClasses.indicator}`]: {
-              transition: "0.2s",
-              [`&.${selectClasses.expanded}`]: {
-                transform: "rotate(-180deg)",
+              width: "fit-content",
+              [`& .${selectClasses.indicator}`]: {
+                transition: "0.2s",
+                [`&.${selectClasses.expanded}`]: {
+                  transform: "rotate(-180deg)",
+                },
               },
-            },
-          }}
-        >
-          <Option value={DEFAULT_PAGE_SIZE}>{DEFAULT_PAGE_SIZE}</Option>
-          <Option value={DEFAULT_PAGE_SIZE + 5}>{DEFAULT_PAGE_SIZE + 5}</Option>
-          <Option value={DEFAULT_PAGE_SIZE + 10}>
-            {DEFAULT_PAGE_SIZE + 10}
-          </Option>
-          <Option value={DEFAULT_PAGE_SIZE + 20}>
-            {DEFAULT_PAGE_SIZE + 20}
-          </Option>
-        </Select>
+            }}
+          >
+            <Option value={DEFAULT_PAGE_SIZE}>{DEFAULT_PAGE_SIZE}</Option>
+            <Option value={DEFAULT_PAGE_SIZE + 5}>
+              {DEFAULT_PAGE_SIZE + 5}
+            </Option>
+            <Option value={DEFAULT_PAGE_SIZE + 10}>
+              {DEFAULT_PAGE_SIZE + 10}
+            </Option>
+            <Option value={DEFAULT_PAGE_SIZE + 20}>
+              {DEFAULT_PAGE_SIZE + 20}
+            </Option>
+          </Select>
+        </Box>
 
-        <p>
-          {/* {firstArticleNum} - {lastArticleNum} of {data.totalResults} */}
-          {firstArticleNum} - {lastArticleNum} of {tempTotalCount}
-        </p>
+        <Box display="flex" alignItems="center">
+          <Box component="p" mr={2}>
+            {firstArticleNum} - {lastArticleNum} of {data.totalResults}
+            {/* {firstArticleNum} - {lastArticleNum} of {tempTotalCount} */}
+          </Box>
 
-        <IconButton
-          disabled={firstArticleNum === 1}
-          variant="plain"
-          size="sm"
-          onClick={() => {
-            setPage((prev) => prev - 1);
-          }}
-          sx={{
-            "&:hover": { backgroundColor: "transparent" },
-          }}
-        >
-          <ChevronLeftIcon />
-        </IconButton>
-        <IconButton
-          // disabled={lastArticleNum === data.totalResult}
-          disabled={lastArticleNum === tempTotalCount}
-          variant="plain"
-          size="sm"
-          onClick={() => {
-            setPage((prev) => prev + 1);
-          }}
-          sx={{
-            "&:hover": { backgroundColor: "transparent" },
-          }}
-        >
-          <ChevronRightIcon />
-        </IconButton>
+          <IconButton
+            aria-label="Previous page"
+            disabled={firstArticleNum === 1}
+            variant="plain"
+            size="sm"
+            onClick={() => {
+              setPage((prev) => prev - 1);
+            }}
+            sx={{
+              "&:hover": { backgroundColor: "transparent" },
+            }}
+          >
+            <ChevronLeftIcon />
+          </IconButton>
+          <IconButton
+            aria-label="Next page"
+            disabled={lastArticleNum === data.totalResults}
+            // disabled={lastArticleNum === tempTotalCount}
+            variant="plain"
+            size="sm"
+            onClick={() => {
+              setPage((prev) => prev + 1);
+            }}
+            sx={{
+              "&:hover": { backgroundColor: "transparent" },
+            }}
+          >
+            <ChevronRightIcon />
+          </IconButton>
+        </Box>
       </Box>
     </Container>
   );

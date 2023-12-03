@@ -42,9 +42,10 @@ const Article = () => {
           }}
         >
           <LinkMUI
+            aria-label="Link back"
             component={Link}
             to={locationForBackLink}
-            sx={{ color: "#4E5460", "&:hover": { transform: "scale(1.3)" } }}
+            sx={{ color: "#4E5460", "&:hover": { color: "#000000" } }}
           >
             <ArrowBackIcon />
           </LinkMUI>

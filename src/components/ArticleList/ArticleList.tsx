@@ -24,9 +24,13 @@ const TableStyled = styled(Table)`
     vertical-align: middle !important;
   }
 
+  & td {
+    border: 1px solid rgba(53, 61, 106, 0.08);
+  }
+
   & th:nth-of-type(5),
-  & th:nth-of-type(6),
   & td:nth-of-type(5),
+  & th:nth-of-type(6),
   & td:nth-of-type(6) {
     text-align: center;
   }
@@ -64,6 +68,7 @@ const ArticleList: FC<IArticlesProps> = ({ list }) => {
                   alt={item.title}
                   width="100"
                   height="70"
+                  loading="lazy"
                 />
               </td>
               <td>
@@ -87,6 +92,7 @@ const ArticleList: FC<IArticlesProps> = ({ list }) => {
               <td>{format(new Date(item.publishedAt), "yyyy-MM-dd")}</td>
               <td>
                 <LinkMUI
+                  aria-label="Link to source article"
                   href={item.url}
                   sx={{
                     color: "rgba(0,0,0,0.54)",
