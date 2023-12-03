@@ -80,10 +80,13 @@ const Home = () => {
         name: "asdasd",
       },
       urlToImage: "img url",
+      content:
+        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
     },
     {
       author: "a112asdasd",
-      title: "sadfsdf",
+      title:
+        "sadfs dfsadf sdfsa dfsd fsadfs fsadfs fsa sadfsd fsad fsd sadfs dffsadfs dfsadfsdf sadfsdf adfsdfdf",
       description:
         "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
       url: "asdadasd",
@@ -92,7 +95,9 @@ const Home = () => {
         id: "2",
         name: "asdasd",
       },
-      urlToImage: "img url",
+      urlToImage: "",
+      content:
+        "The mayor of Nashville, Tennessee, called Monday for an investigation after images purported to be the writings of a shooter who killed six people at The Covenant School in March were posted online.",
     },
   ];
 
