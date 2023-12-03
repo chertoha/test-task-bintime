@@ -9,6 +9,7 @@ export type Article = {
     id: string;
     name: string;
   };
+  content: string;
 };
 
 export type News = {

@@ -1,57 +1,57 @@
 [
   {
     "id": "1",
-    "country": "Argentina",
-    "code": "ar"
+    "title": "Argentina",
+    "value": "ar"
   },
   {
     "id": "2",
-    "country": "Italy",
-    "code": "it"
+    "title": "Italy",
+    "value": "it"
   },
   {
     "id": "3",
-    "country": "Japan",
-    "code": "jp"
+    "title": "Japan",
+    "value": "jp"
   },
   {
     "id": "4",
-    "country": "Latvia",
-    "code": "lv"
+    "title": "Latvia",
+    "value": "lv"
   },
   {
     "id": "5",
-    "country": "Lithuania",
-    "code": "lt"
+    "title": "Lithuania",
+    "value": "lt"
   },
   {
     "id": "6",
-    "country": "Mexico",
-    "code": "mx"
+    "title": "Mexico",
+    "value": "mx"
   },
   {
     "id": "7",
-    "country": "Portugal",
-    "code": "pt"
+    "title": "Portugal",
+    "value": "pt"
   },
   {
     "id": "8",
-    "country": "Romania",
-    "code": "ro"
+    "title": "Romania",
+    "value": "ro"
   },
   {
     "id": "9",
-    "country": "Taiwan",
-    "code": "tw"
+    "title": "Taiwan",
+    "value": "tw"
   },
   {
     "id": "10",
-    "country": "United Kingdom",
-    "code": "gb"
+    "title": "United Kingdom",
+    "value": "gb"
   },
   {
     "id": "11",
-    "country": "United States",
-    "code": "us"
+    "title": "United States",
+    "value": "us"
   }
 ]

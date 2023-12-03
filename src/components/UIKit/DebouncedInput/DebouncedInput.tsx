@@ -1,6 +1,5 @@
 import Input, { InputProps } from "@mui/joy/Input";
 import React, { FC, useRef, useState } from "react";
-// import { FC } from "react";
 
 interface IDebounceProps {
   handleDebounce: (value: string) => void;
@@ -11,7 +10,6 @@ interface IDebounceProps {
 function DebounceInput(props: InputProps & IDebounceProps) {
   const { handleDebounce, controlValueHandler, debounceTimeout, ...rest } =
     props;
-  // console.log(debounceTimeout);
 
   const timerRef = useRef<number>();
 
@@ -29,17 +27,10 @@ function DebounceInput(props: InputProps & IDebounceProps) {
     }, debounceTimeout);
   };
 
-  // console.log(rest.value);
-
   return <Input {...rest} onChange={handleChange} />;
 }
 
-//-------------------------------------------------------------------------
-//-------------------------------------------------------------------------
-//-------------------------------------------------------------------------
-
 interface IDebouncedInputProps {
-  // value: string;
   timeout?: number;
   placeholder?: string;
   onChangeHandler: (value: string) => void;
@@ -54,17 +45,9 @@ const DebouncedInput: FC<IDebouncedInputProps> = ({
   inititalValue,
   startDecorator,
 }) => {
-  // console.log(value);
-
   const [value, setValue] = useState(inititalValue);
-  // const [debouncedValue, setDebouncedValue] = useState("");
-  // const handleDebounce = (value: string) => {
-  //   // setDebouncedValue(value);
-  //   // setDebouncedValue(value);
-  //   console.log("debaunced", value);
-  // };
+
   return (
-    // <Box sx={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
     <>
       <DebounceInput
         startDecorator={startDecorator}
@@ -75,9 +58,7 @@ const DebouncedInput: FC<IDebouncedInputProps> = ({
         controlValueHandler={setValue}
         size="sm"
       />
-      {/* <Typography>Debounced input: {debouncedValue}</Typography> */}
     </>
-    // </Box>
   );
 };
 

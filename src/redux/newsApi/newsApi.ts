@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "services/api";
-import { DEFAULT_QUERY } from "services/apiConfig";
+import { DEFAULT_QUERY } from "services/config";
 import { News } from "types/dataTypes";
 import { GetNewsQuery } from "types/queryTypes";
 
@@ -23,30 +23,6 @@ export const newsApi = createApi({
         },
       }),
     }),
-
-    //   query: ({ query, page, pageSize, category, country }) => {
-    //     const q = !query && !category && !country ? DEFAULT_QUERY : query;
-
-    //     return {
-    //       url: "/top-headlines",
-    //       method: "GET",
-    //       params: {
-    //         q,
-    //         page,
-    //         pageSize,
-    //         category,
-    //         country,
-    //       },
-    //     };
-    //   },
-    // }),
-
-    // getLatest: builder.query<any, void>({
-    //   query: () => ({
-    //     url: "/everything?q=ukraine",
-    //     method: "GET",
-    //   }),
-    // }),
   }),
 });
 
