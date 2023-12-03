@@ -11,6 +11,7 @@ import {
 } from "@mui/joy";
 import { FC, SyntheticEvent } from "react";
 import { State } from "types/stateTypes";
+import FilterSelect from "./FilterSelect";
 
 interface IFilterProps {
   isOpen: boolean;
@@ -51,89 +52,19 @@ const Filter: FC<IFilterProps> = ({
         rowGap: 2,
       }}
     >
-      <FormLabel
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        Category
-        <Select
-          onChange={onCategoryChange}
-          value={category}
-          size="sm"
-          placeholder="-Select-"
-          indicator={<KeyboardArrowDown />}
-          sx={{
-            width: {
-              xs: "60%",
-              md: 240,
-            },
-            [`& .${selectClasses.indicator}`]: {
-              transition: "0.2s",
-              [`&.${selectClasses.expanded}`]: {
-                transform: "rotate(-180deg)",
-              },
-            },
-          }}
-        >
-          <Option value="">
-            <Typography
-              sx={{ color: "gray", fontWeight: "400", fontSize: "14px" }}
-            >
-              -Select-
-            </Typography>
-          </Option>
-          {categories.map(({ id, title, value }) => (
-            <Option key={id} value={value}>
-              {title}
-            </Option>
-          ))}
-        </Select>
-      </FormLabel>
+      <FilterSelect
+        label="Category"
+        list={categories}
+        value={category}
+        onChange={onCategoryChange}
+      />
 
-      <FormLabel
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        Country
-        <Select
-          onChange={onCountryChange}
-          value={country}
-          size="sm"
-          placeholder="-Select-"
-          indicator={<KeyboardArrowDown />}
-          sx={{
-            width: {
-              xs: "60%",
-              md: 240,
-            },
-            [`& .${selectClasses.indicator}`]: {
-              transition: "0.2s",
-              [`&.${selectClasses.expanded}`]: {
-                transform: "rotate(-180deg)",
-              },
-            },
-          }}
-        >
-          <Option value="">
-            <Typography
-              sx={{ color: "gray", fontWeight: "400", fontSize: "14px" }}
-            >
-              -Select-
-            </Typography>
-          </Option>
-          {countries.map(({ id, country, code }) => (
-            <Option key={id} value={code}>
-              {country}
-            </Option>
-          ))}
-        </Select>
-      </FormLabel>
+      <FilterSelect
+        label="Country"
+        list={countries}
+        value={country}
+        onChange={onCountryChange}
+      />
     </Box>
   );
 };

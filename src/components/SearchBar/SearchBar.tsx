@@ -27,16 +27,17 @@ const SearchBar: FC<ISearchBarProps> = ({
           Formula Top Headlines
         </Typography>
       </Grid>
+
       <Grid xs={12} md={12} lg={4}>
         <Box display="flex" alignItems="center" columnGap={2}>
           <DebouncedInput
             startDecorator={<SearchIcon />}
             placeholder="Search article"
             timeout={1000}
-            // value={query}
             onChangeHandler={onSearch}
             inititalValue={searchValue}
           />
+
           <Button
             aria-pressed={isFilterOpen ? "true" : "false"}
             onClick={toggleFilter}
