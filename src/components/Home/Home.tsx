@@ -81,10 +81,8 @@ const Home = () => {
       <NewsTable
         isError={isError}
         isFetching={isFetching}
-        // list={data.articles}
         pageSizeState={pageSizeState}
         pageState={pageState}
-        // totalResults={data.totalResults}
         data={data}
       />
     </Container>

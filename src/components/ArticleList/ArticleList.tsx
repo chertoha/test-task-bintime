@@ -27,48 +27,6 @@ const ArticleList: FC<IArticlesProps> = ({ list }) => {
         </thead>
         <tbody>
           {list.map((item) => (
-            // <tr key={item.url}>
-            //   <td>
-            //     <img
-            //       src={item.urlToImage ? item.urlToImage : thumbnailImage}
-            //       alt={item.title}
-            //       width="100"
-            //       height="70"
-            //       loading="lazy"
-            //     />
-            //   </td>
-            //   <td>
-            //     <LinkMUI
-            //       component={Link}
-            //       to={ROUTES.ARTICLE}
-            //       state={{ from: location, payload: item }}
-            //       sx={{
-            //         width: "100%",
-            //         height: "100%",
-            //         color: "#212932",
-            //         ":hover": { color: "#8f969f" },
-            //       }}
-            //     >
-            //       {trimText(item.title, 20)}
-            //     </LinkMUI>
-            //   </td>
-            //   <td>{trimText(item.author, 20)}</td>
-            //   <td>{trimText(item.description, 90)}</td>
-            //   <td>{format(new Date(item.publishedAt), "yyyy-MM-dd")}</td>
-            //   <td>
-            //     <LinkMUI
-            //       target="_blank"
-            //       aria-label="Link to source article"
-            //       href={item.url}
-            //       sx={{
-            //         color: "rgba(0,0,0,0.54)",
-            //         ":hover": { color: "#000000" },
-            //       }}
-            //     >
-            //       <LinkIcon />
-            //     </LinkMUI>
-            //   </td>
-            // </tr>
             <ArticleRow key={item.url} item={item} location={location} />
           ))}
         </tbody>

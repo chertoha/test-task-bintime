@@ -31,8 +31,6 @@ const NewsTable: FC<INewsTableProps> = ({
 
   if (!data) return null;
 
-  console.log(data);
-
   const { articles, totalResults } = data;
 
   if (articles.length === 0)

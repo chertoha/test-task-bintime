@@ -4,7 +4,7 @@ import thumbnailImage from "images/thumbnail.jpg";
 import { trimText } from "utils/trimText";
 import { ROUTES } from "router";
 import { Article } from "types/dataTypes";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { format } from "date-fns";
 import { Link, Location } from "react-router-dom";
 import { ImageStyled } from "./ArticleList.styled";
@@ -17,22 +17,29 @@ interface IArticleRowProps {
 const ArticleRow: FC<IArticleRowProps> = ({ item, location }) => {
   const { author, description, publishedAt, title, url, urlToImage } = item;
 
+  const [image, setImage] = useState(urlToImage);
+
+  const onImageDownloadError = () => {
+    setImage(thumbnailImage);
+  };
+
   return (
     <tr key={url}>
       <td>
         <ImageStyled
-          src={urlToImage ? urlToImage : thumbnailImage}
+          src={image ? image : thumbnailImage}
           alt={title}
           width="100"
           height="70"
           loading="lazy"
+          onError={onImageDownloadError}
         />
       </td>
       <td>
         <LinkMUI
           component={Link}
           to={ROUTES.ARTICLE}
-          state={{ from: location, payload: item }}
+          state={{ from: location, payload: { ...item, urlToImage: image } }}
           sx={{
             width: "100%",
             height: "100%",

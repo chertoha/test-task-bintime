@@ -7,15 +7,13 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  //   params: { apiKey: API_KEY },
   headers: {
     "X-Api-Key": API_KEY,
   },
 });
 
 export const axiosBaseQuery =
-  (): // { baseUrl }: { baseUrl: string } = { baseUrl: "" }
-  BaseQueryFn<
+  (): BaseQueryFn<
     {
       url: string;
       method: AxiosRequestConfig["method"];

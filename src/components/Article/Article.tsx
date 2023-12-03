@@ -23,8 +23,6 @@ const Article = () => {
     content,
   } = article;
 
-  console.log(content);
-
   return (
     <Box pb={5} pt={2}>
       <Container>

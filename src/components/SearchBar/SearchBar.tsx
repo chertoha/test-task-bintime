@@ -1,7 +1,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import { Box, Button, Grid, Typography } from "@mui/joy";
 import DebouncedInput from "components/UIKit/DebouncedInput";
+import { Box, Button, Grid, Typography } from "@mui/joy";
 import { FC } from "react";
 
 interface ISearchBarProps {

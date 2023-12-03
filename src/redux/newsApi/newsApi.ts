@@ -23,30 +23,6 @@ export const newsApi = createApi({
         },
       }),
     }),
-
-    //   query: ({ query, page, pageSize, category, country }) => {
-    //     const q = !query && !category && !country ? DEFAULT_QUERY : query;
-
-    //     return {
-    //       url: "/top-headlines",
-    //       method: "GET",
-    //       params: {
-    //         q,
-    //         page,
-    //         pageSize,
-    //         category,
-    //         country,
-    //       },
-    //     };
-    //   },
-    // }),
-
-    // getLatest: builder.query<any, void>({
-    //   query: () => ({
-    //     url: "/everything?q=ukraine",
-    //     method: "GET",
-    //   }),
-    // }),
   }),
 });
 
