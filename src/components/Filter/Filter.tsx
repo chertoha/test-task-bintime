@@ -1,17 +1,9 @@
 import categories from "data/categories.json";
 import countries from "data/countries.json";
-import { KeyboardArrowDown } from "@mui/icons-material";
-import {
-  Box,
-  FormLabel,
-  Option,
-  Select,
-  selectClasses,
-  Typography,
-} from "@mui/joy";
+import FilterSelect from "./FilterSelect";
+import { Box } from "@mui/joy";
 import { FC, SyntheticEvent } from "react";
 import { State } from "types/stateTypes";
-import FilterSelect from "./FilterSelect";
 
 interface IFilterProps {
   isOpen: boolean;
@@ -48,7 +40,6 @@ const Filter: FC<IFilterProps> = ({
           xs: "column",
           md: "row",
         },
-
         rowGap: 2,
       }}
     >
