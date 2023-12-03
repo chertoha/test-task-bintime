@@ -32,7 +32,7 @@ const Home = () => {
 
   const [country] = countryFilterState;
   const [category] = categoryFilterState;
-  const [page] = pageState;
+  const [page, setPage] = pageState;
   const [pageSize] = pageSizeState;
 
   const request = useMemo(
@@ -48,8 +48,13 @@ const Home = () => {
 
   const { data, isFetching, isError } = useGetNewsQuery(request);
 
+  const resetPage = () => {
+    setPage(1);
+  };
+
   const onSearch = (value: string): void => {
     setQuery(value);
+    resetPage();
   };
 
   const toggleFilter = () => {
@@ -76,6 +81,7 @@ const Home = () => {
         categoryState={categoryFilterState}
         countryState={countryFilterState}
         isOpen={isFilterOpen}
+        resetPage={resetPage}
       />
 
       <NewsTable

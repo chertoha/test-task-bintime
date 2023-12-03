@@ -8,7 +8,9 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "X-Api-Key": API_KEY,
+    common: {
+      "X-Api-Key": API_KEY,
+    },
   },
 });
 
