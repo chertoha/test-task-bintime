@@ -8,14 +8,11 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 export const api = axios.create({
   baseURL: BASE_URL,
 
-  params: { apiKey: API_KEY },
-
   headers: {
     common: {
       "X-Api-Key": API_KEY,
     },
   },
-  // withCredentials: true,
 });
 
 export const axiosBaseQuery =
